@@ -29,7 +29,7 @@ class Dispatcher
         $className = ucfirst(strtolower($controller)) . 'Controller';
         
         // クラスファイル読込
-        require_once $this->sysRoot . '/controllers/' . $className . '.php';
+        require_once $this->sysRoot . '/controller/' . $className . '.php';
         
         // クラスインスタンス生成
         $controllerInstance = new $className();

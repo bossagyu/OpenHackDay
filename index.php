@@ -1,14 +1,14 @@
 <?php
+require 'AutoLoader.php';
+require 'Dispatcher.php';
+
+$autoLoader = new AutoLoader();
+$autoLoader->registerDir(dirname(__FILE__). '/model');
+$autoLoader->register();
+
+$dispatcher = new Dispatcher();
+$dispatcher = setSystemRoot('/home/kouhei/hackday');
+$dispatcher->dispatch();
+
+
 ?>
-
-<html>
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>メメント☆モリ</title>
-</head>
-<body>
-	小野寺prpr
-	<img src = "./img/nighit.jpg" WIDTH="80" HEIGHT="150">
-</body>
-
-</html>
