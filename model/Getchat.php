@@ -34,10 +34,10 @@ class Getchat
         $ch     = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS. $this->data);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $this->data);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         var_dump(curl_exec($ch));
-        curl_close;
+        curl_close($ch);
 	}
     
     // フロント側から送られてきたデータの設定

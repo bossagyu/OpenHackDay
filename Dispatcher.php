@@ -12,7 +12,6 @@ class Dispatcher
     {
         // パラメーター取得（末尾の / は削除）
         $param = ereg_replace('/?$', '', $_SERVER['REQUEST_URI']);
-        
         $params = array();
         if ('' != $param) {
             // パラメーターを / で分割
@@ -22,35 +21,24 @@ class Dispatcher
         // １番目のパラメーターをコントローラーとして取得
         $controller = "index";
         if (0 < count($params)) {
-            $controller = $params[1];
+            $controller = $params[2];
         }
-        
         // パラメータより取得したコントローラー名によりクラス振分け
         $className = ucfirst(strtolower($controller)) . 'Controller';
         
-        // クラスファイル読込
-        require_once $this->sysRoot . '/controller/' . $className . '.php';
-        
+        // クラスファイル読込 autoloaderによりいらない
+        //require_once $this->sysRoot . '/controller/' . $className . '.php';
+		
         // クラスインスタンス生成
         $controllerInstance = new $className();
-		
-		// クラスインスタンス生成
-        $controllerInstance = new $className();
-
+        
         // 2番目のパラメーターをコントローラーとして取得
         $action= 'index';
         if (1 < count($params)) {
-            $action= $params[2];
+            $action= $params[3];
         }        
-
         // アクションメソッドを実行
-        $actionMethod = $action . 'Action';
+        $actionMethod = $action;
         $controllerInstance->$actionMethod();
     }
 }
-
-
-
-
-
-?>
