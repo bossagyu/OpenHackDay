@@ -8,7 +8,8 @@ class Returnjson
 
     function __construct($data)
     {
-        $json_value = json_encode( sample_array );
+        $json   = new Services_JSON;
+        $json_value = $json->encode($data);
     }
     
     function returnResult()
@@ -16,7 +17,6 @@ class Returnjson
         $header( 'Content-Type: text/javascript; charset=utf-8' );
         echo $this->jason_value;
     }
-
 
 }
 
