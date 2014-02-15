@@ -9,16 +9,14 @@ class Returnjson
     function __construct($data)
     {
         $json   = new Services_JSON;
-        $json_value = $json->encode($data);
+        $this->json_value = $json->encode($data);
     }
     
     function returnResult()
     {
-        $header( 'Content-Type: text/javascript; charset=utf-8' );
-        echo $this->jason_value;
+        //$header( 'Content-Type: text/javascript; charset=utf-8' );
+        
+        echo $this->json_value;
     }
 
 }
-
-
-?>
