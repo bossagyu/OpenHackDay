@@ -23,7 +23,12 @@ class Makechat
     public function tundere()
     {
         $multi  = preg_split("//u", $this->yomi, -1, PREG_SPLIT_NO_EMPTY);
-        $this->result =  $multi[0]."、".$this->chat."///";
+        if(isset($multi[0])){
+            $this->result =  $multi[0]."、".$this->chat."///";
+        }
+        else {
+            $this->result =  $this->chat."///";
+        }
     }
 
 }

@@ -12,7 +12,7 @@ class Getchat
     // 決め打ちのデフォルトの設定
 	function __construct($key)
 	{
-		$this->apikey = $key;
+        $this->apikey = $key;
         $this->datas  = array("nickname" => "先輩",
                     "nickname_y" => "センパイ",
                     "sex" => "男",

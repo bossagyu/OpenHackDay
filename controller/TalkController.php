@@ -38,11 +38,27 @@ class TalkController
         $jreturn = new Returnjson($jresult);
         $jreturn->returnResult();
     }
-    
+    public function recspot()
+    {
+        $reco       = new Recomendspot();
+        $result_tmp = $reco->getSpot(5);
+        $recome     = new Makerecomend($result_tmp[1]['title']);
+        if($_POST['yan'] == 1) {
+            $recome->yanTalk();
+        }
+        else {
+            $recome->makeTalk();
+        }
+        $result['answer'] = $recome->result;
+        $result['url']  = $result_tmp[1]['url'];
+        $jreturn  = new Returnjson($result);
+        $jreturn->returnResult();
+    }
+
     public function test()
     {
         print "test";
-
+        
     }
 
 }
