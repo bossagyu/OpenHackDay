@@ -4,7 +4,7 @@ class TalkController
 {
     public function talk()
     {
-        $APIKEY  = "514650556a66486c6e514e4e6d433545525a313951513073356b7a6f6144595230776c415a596b30577437";
+        $APIKEY  = "xxxxx";
         $talkapi = new Getchat($APIKEY);
         $talkapi->setData($_POST);
         $talkapi->getRequest();
@@ -27,13 +27,18 @@ class TalkController
 
     public function qa()
     {
-        $APIKEY  = "30384f3271356159544e514a7a433135504d42386a6c7237516b773777657a534e706a6c7061756e596536";
+        $APIKEY  = "xxxxxx";
         $qaapi    = new Getqa($APIKEY);
         $qaapi->getRequest($_POST['question']);
         $json     = new Services_JSON;
         $content  = $json->decode($qaapi->response);
         $makeqa   = new Makeqa($content->answers[0]->answerText);
-        $makeqa->$_POST['value']();
+        if(isset($content->answers[0]->answerText)){
+            $makeqa->$_POST['value']();
+        }
+        else {
+            $makeqa->wakaranai();
+        }
         $jresult['answer'] = $makeqa->result;
         $jreturn = new Returnjson($jresult);
         $jreturn->returnResult();
@@ -42,7 +47,7 @@ class TalkController
     {
         $reco       = new Recomendspot();
         $result_tmp = $reco->getSpot(5);
-        $recome     = new Makerecomend($result_tmp[1]['title']);
+        $recome     = new Makerecomend($result_tmp[3]['title']);
         if($_POST['yan'] == 1) {
             $recome->yanTalk();
         }
@@ -50,7 +55,7 @@ class TalkController
             $recome->makeTalk();
         }
         $result['answer'] = $recome->result;
-        $result['url']  = $result_tmp[1]['url'];
+        $result['url']  = $result_tmp[3]['url'];
         $jreturn  = new Returnjson($result);
         $jreturn->returnResult();
     }
