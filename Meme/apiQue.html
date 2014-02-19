@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+     <head>
+          <meta charset="UTF-8" />
+          <title></title>
+          <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+          <script type="text/javascript">
+               $(function() {
+                    $('#the-form').submit(function(event) {
+                         event.preventDefault();
+                         var $form = $(this);
+                         var $button = $form.find('button');
+                         var $msg = $(".message").val();
+                         var $mode = $(".mode").val();
+                         var $context = $(".context").val();
+                         console.log($mode);
+
+                         $.ajax({
+                              type: $form.attr('method'),
+                              url: $form.attr('action'),
+							 // dataType: 'jsonp',
+                              data: {
+                                   utt: $msg,
+                                   value: 3,
+                                   context: $context,
+                                   mode: $mode,
+                                   tun: 1
+                              }
+                         }).done(function(data) {
+                              data = $.parseJSON(data);
+                              $(".context").attr("value", data.context);
+                              $(".mode").attr("value", data.mode);
+                              $("#result").html(data.answer);
+                         }).fail(function() {
+                              alert("error");
+                         });
+                    });
+               });
+          </script>
+     </head>
+     <body>
+          <form id="the-form" action="http://sakura/hackday/Talk/talk" method="POST">
+               <input class="message" type="text" value="" />
+               <input class="mode" type="hidden" value="dialog" />
+               <input class="context" type="hidden" value="" />
+               <button>送信</button>
+          </form>
+          <p id='result'></p>
+     </body>
+</html>

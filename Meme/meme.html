@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+<meta charset="UTF-8"/>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+<!--
+var moji = "";
+var No = 0;
+
+function mojitypetest(mojitext) {
+     moji = mojitext; 
+     if (No > moji.length) {
+      No = 0;
+      moji = "";
+      return;
+     } else {
+      No++;
+      txt = moji.substring(0,No);
+      document.getElementById("main").innerText = txt;
+   }
+     setTimeout("mojitypetest(moji)",65);
+}
+
+	var memeimg = new Array("img/meme/yorokobu.png","img/meme/haji.png","img/meme/kouhun.png");
+	//今日の日付データを変数hidukeに格納
+	var hiduke=new Date(); 
+	//年・月・日・曜日を取得する
+	var year = hiduke.getFullYear();
+	var month = hiduke.getMonth()+1;
+	var week = hiduke.getDay();
+	var day = hiduke.getDate();
+	var yobi= new Array("日","月","火","水","木","金","土");
+
+//-->
+</script>
+
+<title>教えてメメちゃん！！</title>
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+</head>
+
+<body onLoad="recomend()">
+		<div　id="main" style="position: absolute;">
+		<div id="date">
+			
+		</div>
+		<div id="datetext">
+			<p>
+				<script type="text/javascript">
+					document.write(month+"月"+day+"日 " + "(" +yobi[week]+")");
+				</script>
+			</p>
+		</div>
+
+		<div id="weather">	 
+		</div>
+
+		<div id="weatherimg">
+			<img src="./img/weather/snow.png" alt="weather" width: 75px; height: 70px;>
+		</div>
+		
+		<img src="img/background/kyoushitsu.jpg" alt="kyousitu" />
+		<!--
+		<div id="heart">
+			<img src="img/hearts/heart1.png" width="55px" height="80px" />
+			<img src="img/hearts/heart1.png" width="55px" height="80px" />
+			<img src="img/hearts/heart1.png" width="55px" height="80px" />
+			<img src="img/hearts/heart1.png" width="55px" height="80px" />
+			<img src="img/hearts/heart1.png" width="55px" height="80px" />
+		</div>
+		-->
+		<div class="wrapper" id="pop">
+    		<div class="box">
+        		<img src="" name="recomendimg" id="recomendimg" width="160" height="160" >
+    		</div>
+		</div>
+
+		<div id="meme">
+			<img src="img/meme/yorokobu.png" alt="haji" name="memeimage"/>
+		</div>
+			
+		<div id="textwindow">
+			<p id="main"> </p>
+		</div>
+			
+	</div>
+	<script type="text/javascript" src="js/mainscript.js"></script>
+	<div id="inputtext">
+		<form id="the-form" name="timer" method="POST">
+			<input type="text" name="inputtext" class="inputtextarea" id="message">
+			 	<input class="mode" type="hidden" value="dialog" />
+			 	<input class="context" type="hidden" value="" />
+			<input type="button" value="会話" onClick="kaiwa()" >
+
+			<input type="button" value="質問" onClick="question()"> 
+			
+		</form>
+
+		
+
+
+	</div>
+</body>
+</html>
+
+
+
